@@ -19,29 +19,29 @@ module.exports = {
         // 处理图片必须安装的loader！！！
         test: /\.(png|svg|jpg|jpeg|gif)$/,
         use: [
-          // "file-loader",
-          { // url-loader 功能类似于 file-loader，可以将 url 地址对应的文件，打包成 base64 的 DataURL，提高访问效率
-            loader: "url-loader", // 注意不能和image-webpack-loader公同使用
-            // 根据图片大小，把图片转换成 base64
-            options: { limit: 10000 }
-          },
-          // {
-          //   loader: "image-webpack-loader",
-          //   options: {
-          //     mozjpeg: { progressive: true, quality: 65 },
-          //     optipng: { enabled: false },
-          //     pngquant: { quality: "65-90", speed: 4 },
-          //     gifsicle: { interlaced: false },
-          //     webp: { quality: 75 }
-          //   }
-          // }
+          "file-loader",
+          // { // url-loader 功能类似于 file-loader，可以将 url 地址对应的文件，打包成 base64 的 DataURL，提高访问效率
+          //   loader: "url-loader", // 注意不能和image-webpack-loader公同使用
+          //   // 根据图片大小，把图片转换成 base64
+          //   options: { limit: 10000 }
+          // },
+          {
+            loader: "image-webpack-loader",
+            options: {
+              mozjpeg: { progressive: true, quality: 65 },
+              optipng: { enabled: false },
+              pngquant: { quality: "65-90", speed: 4 },
+              gifsicle: { interlaced: false },
+              webp: { quality: 75 }
+            }
+          }
         ]
       },
       {
         test: /\.js$/,
         use: [
           {
-            loader: "babel-loader",
+            loader: "babel-loader?cacheDirectory=true",
             options: {
               presets: ['@babel/preset-env']
             }
@@ -82,7 +82,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPulgin({
       title: "leo study!",
-      filename: "main.html",
+      filename: "index.html",
       template: "./src/index.html",
       minify: {
         // collapseWhitespace: true,
