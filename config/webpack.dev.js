@@ -1,14 +1,13 @@
 const path = require("path");
 const merge = require("webpack-merge");
 const common = require("./webpack.common.js");
-
 const devConfig = {
   mode: "development",
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "../dist")
   },
-  // devtool: "inline-source-map",
+  devtool: "inline-source-map",
   module: {
     rules: [
       {
@@ -47,6 +46,6 @@ const devConfig = {
         }
       }
     }
-  }
+  },
 };
 module.exports = merge(common, devConfig);

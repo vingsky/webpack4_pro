@@ -43,12 +43,12 @@ module.exports = {
           {
             loader: "babel-loader?cacheDirectory=true",
             options: {
-              presets: ['@babel/preset-env']
+              presets: ["@babel/preset-env"]
             }
           }
         ],
-        exclude: /node_modules/,
-      },
+        exclude: /node_modules/
+      }
       // {
       //   test: /\.scss$/,
       //   use: [
@@ -90,5 +90,8 @@ module.exports = {
         removeAttributeQuotes: true
       }
     })
-  ]
+  ],
+  externals: {
+    lodash: "_"
+  }
 };
