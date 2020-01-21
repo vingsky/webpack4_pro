@@ -6,7 +6,7 @@ const common = require("./webpack.common.js");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
+// const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
 
 const prodConfig = {
   mode: "production",
@@ -46,7 +46,7 @@ const prodConfig = {
         use: [
           // "style-loader",
           MiniCssExtractPlugin.loader,
-          { loader: "css-loader", options: { sourceMap: true } },
+          { loader: "css-loader", options: { sourceMap: true, modules:true } },
           {
             loader: "postcss-loader",
             options: {
@@ -61,7 +61,7 @@ const prodConfig = {
     ]
   },
   plugins: [
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].[hash].css",
       chunkFilename: "[id].[hash].css"
